@@ -1,0 +1,25 @@
+logging.level.com.bytedance.thrift: INFO
+logging.level.com.bytedance.jet: INFO
+
+logging.file: "/opt/tiger/toutiao/log/app/${spring.application.name}.log"
+
+thrift:
+  client:
+    logging:
+      log-output-directory: "/opt/tiger/toutiao/log/rpc/"
+  server:
+    logging:
+      log-output-directory: "/opt/tiger/toutiao/log/app/"
+
+http:
+  logging:
+    log-output-directory: "/opt/tiger/toutiao/log/app/"
+
+thrift.client.pool:
+  max-io-size: 32
+  max-worker-size: 300
+  min-evictable-idle-time-millis: 50000
+  min-idle: 0
+
+thrift.server:
+    max-worker-threads: 400

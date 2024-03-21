@@ -1,0 +1,53 @@
+server:
+  port: 9999
+
+thrift.client.logging:
+  enableConsoleLog: false
+  logLevel: TRACE
+
+thrift.server.logging:
+  enableConsoleLog: false
+  logLevel: TRACE
+
+http.logging:
+  enableConsoleLog: false
+  logLevel: TRACE
+
+thrift.server:
+  port: 9000
+
+
+
+#only rpc
+spring:
+  main:
+    web-environment: true
+
+thrift.server.trace: # from interface-java/BytedTrace.java.
+  emitMetrics: true
+  emitSpanLog: true
+
+thrift.client.trace: # from interface-java/BytedTrace.java.
+  emitMetrics: true
+  emitSpanLog: true
+
+tracer.options:
+  # Specify the full name of your class; e.g. "com.bytedance.xxx.MyClass"
+  loggerPath: DEFAULT
+  reporterPath: DEFAULT
+  metricPath: DEFAULT
+  # Specify the full name of your subclass to TracerCustomizedFunctions; e.g. "com.bytedance.xxx.MyCustomizedFunctions"
+  tracerCustomizedFunctionsClassPath: DEFAULT
+  # Specify whether you want to call these functions
+  disableMetrics: false
+  enableCollectTracerStatus: false
+  light: false
+  disableThreadLocalMode: false
+  disableReportRemoteAddrWhenErr: false
+  # For codecCompression; Acceptable enum values: NONE, ZSTD_FAST
+  headerCompression: ZSTD_FAST
+  contentCompression: ZSTD_FAST
+  # Specify your custom config mode. Acceptable enum values: FILE or TCC
+  configMode: TCC
+
+

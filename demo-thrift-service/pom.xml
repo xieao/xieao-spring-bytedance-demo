@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>demo</artifactId>
+        <groupId>com.bytedance.mossey</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>demo-thrift-service</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bytedance</groupId>
+            <artifactId>thrift-service-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bytedance</groupId>
+            <artifactId>http-service-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bytedance.mossey</groupId>
+            <artifactId>demo-spi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>transmittable-thread-local</artifactId>
+            <version>2.14.4</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!--打包指令 : mvn package spring-boot:repackage -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.bytedance</groupId>
+                <artifactId>cloud-mvn</artifactId>
+                <version>${cloud-mvn-version}</version>
+                <executions>
+                    <execution>
+                        <id>toutiao cloud scm package</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>toutiao cloud scm clean</id>
+                        <phase>pre-clean</phase>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>toutiao cloud scm settings config</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>info</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>toutiao cloud scm bootstrap</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>bootstrap</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot-version}</version>
+
+                <executions>
+                    <execution>
+                        <id>spring boot scm bootstrap</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+            </plugin>
+        </plugins>
+    </build>
+</project>

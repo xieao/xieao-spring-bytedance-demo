@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: ad.bi.mossey
+
+spring.cloud.config.enabled: false
+
+consul:
+  proxy:
+    enabled: false

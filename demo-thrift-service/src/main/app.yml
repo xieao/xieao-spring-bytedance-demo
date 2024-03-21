@@ -1,0 +1,45 @@
+applicationArguments:
+  - --spring.profiles.active=$profile
+
+jvm8Options:
+  - -XX:ActiveProcessorCount=$${MY_CPU_LIMIT:-2} # number of cpus
+  - -XX:MaxRAM=$${MY_MEM_LIMIT:-4294967296} # size of physical memory
+  - -XX:InitialRAMPercentage=35.0
+  - -XX:MaxRAMPercentage=35.0
+  - -XX:MinRAMPercentage=35.0
+  - -XX:SurvivorRatio=15
+  - -XX:+UseParNewGC
+  - -XX:MaxTenuringThreshold=15
+  - -XX:+UseConcMarkSweepGC
+  - -XX:+UseCMSInitiatingOccupancyOnly
+  - -XX:+ScavengeBeforeFullGC
+  - -XX:+CMSParallelRemarkEnabled
+  - -XX:CMSInitiatingOccupancyFraction=60
+  - -XX:+CMSClassUnloadingEnabled
+  - -XX:SoftRefLRUPolicyMSPerMB=0
+  - -XX:-ReduceInitialCardMarks
+  - -XX:-OmitStackTraceInFastThrow
+
+
+jvm11Options:
+  - -XX:ActiveProcessorCount=$${MY_CPU_LIMIT:-2} # number of cpus
+  - -XX:MaxRAM=$${MY_MEM_LIMIT:-4294967296} # size of physical memory
+  - -XX:InitialRAMPercentage=35.0
+  - -XX:MaxRAMPercentage=35.0
+  - -XX:MinRAMPercentage=35.0
+  - -XX:+UseG1GC
+  - -XX:MaxGCPauseMillis=200
+
+
+jvm17Options:
+  - -XX:ActiveProcessorCount=$${MY_CPU_LIMIT:-2} # number of cpus
+  - -XX:MaxRAM=$${MY_MEM_LIMIT:-4294967296} # size of physical memory
+  - -XX:InitialRAMPercentage=35.0
+  - -XX:MaxRAMPercentage=35.0
+  - -XX:MinRAMPercentage=35.0
+  - -XX:+UseG1GC
+  - --add-opens=java.base/java.lang=ALL-UNNAMED
+  - --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+  - --add-opens=java.base/java.io=ALL-UNNAMED
+  - --add-opens=java.base/java.util=ALL-UNNAMED
+  - --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED

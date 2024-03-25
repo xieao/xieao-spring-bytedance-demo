@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.bytedance.mossey</groupId>
-  <artifactId>demo</artifactId>
-  <packaging>pom</packaging>
-  <version>1.0.0</version>
-  <modules>
-    <module>demo-thrift-service</module>
-    <module>demo-spi</module>
-  </modules>
+    <groupId>com.bytedance.mossey</groupId>
+    <artifactId>demo</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+    <modules>
+        <module>demo-thrift-service</module>
+        <module>demo-spi</module>
+    </modules>
 
     <properties>
         <spring-boot-version>2.0.5.RELEASE</spring-boot-version>
@@ -23,74 +23,85 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.bytedance</groupId>
-        <artifactId>base-dependencies</artifactId>
-        <version>2.0.10</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.bytedance</groupId>
-        <artifactId>starter-bom</artifactId>
-        <version>2.0.22</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.bytedance.mossey</groupId>
-        <artifactId>demo-spi</artifactId>
-        <version>1.0.0</version>
-      </dependency>
-      <!-- PUT YOUR DEPENDENCIES HERE TO CONTROL DEPENDENCY VERSION -->
-    </dependencies>
-  </dependencyManagement>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.bytedance</groupId>
+                <artifactId>base-dependencies</artifactId>
+                <version>2.0.10</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.bytedance</groupId>
+                <artifactId>starter-bom</artifactId>
+                <version>2.0.22</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.bytedance.mossey</groupId>
+                <artifactId>demo-spi</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>2.14.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch</artifactId>
+                <version>7.6.2.2</version>
+                <scope>compile</scope>
+            </dependency>
+            <!-- PUT YOUR DEPENDENCIES HERE TO CONTROL DEPENDENCY VERSION -->
+        </dependencies>
+    </dependencyManagement>
 
-  <pluginRepositories>
-    <pluginRepository>
-      <id>nexus-plugin-release</id>
-      <url>
-        https://maven.byted.org/repository/public/
-      </url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>nexus-plugin-release</id>
+            <url>
+                https://maven.byted.org/repository/public/
+            </url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
-  <distributionManagement>
-    <repository>
-      <id>nexus-releases</id>
-      <url>
-        https://maven.byted.org/repository/releases/
-      </url>
-    </repository>
-    <snapshotRepository>
-      <id>nexus-snapshots</id>
-      <url>
-        https://maven.byted.org/repository/snapshots/
-      </url>
-    </snapshotRepository>
-  </distributionManagement>
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <url>
+                https://maven.byted.org/repository/releases/
+            </url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>
+                https://maven.byted.org/repository/snapshots/
+            </url>
+        </snapshotRepository>
+    </distributionManagement>
 
-  <repositories>
-    <repository>
-      <id>nexus-snapshots</id>
-      <name>nexus-snapshots</name>
-      <url>https://maven.byted.org/repository/public/</url>
-      <layout>default</layout>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
+    <repositories>
+        <repository>
+            <id>nexus-snapshots</id>
+            <name>nexus-snapshots</name>
+            <url>https://maven.byted.org/repository/public/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
 </project>

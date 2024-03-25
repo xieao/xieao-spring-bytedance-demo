@@ -38,6 +38,16 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.bytedance</groupId>
+            <artifactId>commons</artifactId>
+            <version>0.0.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>7.6.2.6.1</version>
+        </dependency>
     </dependencies>
 
     <!--打包指令 : mvn package spring-boot:repackage -->

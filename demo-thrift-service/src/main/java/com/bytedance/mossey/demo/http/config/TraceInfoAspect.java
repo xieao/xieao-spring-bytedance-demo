@@ -34,12 +34,12 @@ import static java.util.stream.Collectors.toList;
 @Aspect
 @Component
 public class TraceInfoAspect {
-    @Pointcut("execution(public * com.bytedance.mossey.demo.http.controllers.AsyncController.*(..))" )
+    @Pointcut("execution(public * com.bytedance.mossey.demo.http.controllers..*.*(..))" )
     public void requestAspect(){}
 
     @Around(value = "requestAspect()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
-//        log.info("我进来了");
+        log.info("我进来了");
         List<ThreadLocal<?>> threadLocals = getMDCThreadLocal();
         try {
             // 注册mdc thread local(logId)

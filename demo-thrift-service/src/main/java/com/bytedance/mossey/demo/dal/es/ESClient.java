@@ -4,8 +4,12 @@ import com.bytedance.mossey.demo.common.json.JacksonUtil;
 import com.bytedance.mossey.demo.dal.config.ESProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
+import org.elasticsearch.action.DocWriteRequest;
 import org.elasticsearch.action.DocWriteResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.bulk.BulkItemResponse;
+import org.elasticsearch.action.bulk.BulkRequest;
+import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.index.IndexRequest;
@@ -130,6 +134,29 @@ public class ESClient {
         } else {
             log.warn("insert doc failed {}", JacksonUtil.writeValueAsString(response));
         }
+        return cnt;
+    }
+
+    public int bulkDoc(String indexName, String id, String doc) throws IOException {
+        BulkRequest bulkRequest = new BulkRequest();
+        bulkRequest.add(new IndexRequest().index(indexName).id(id).source(doc, XContentType.JSON));
+        int cnt = 0;
+        BulkResponse bulkResponse = client.bulk(bulkRequest, DEFAULT);
+        log.info("bulk load doc response: {}", bulkResponse);
+        for (BulkItemResponse responseItem : bulkResponse.getItems()) {
+            if (responseItem.getOpType() == DocWriteRequest.OpType.CREATE
+                || responseItem.getOpType() == DocWriteRequest.OpType.INDEX) {
+                IndexResponse indexResponse = responseItem.getResponse();
+                if (indexResponse != null && DocWriteResponse.Result.CREATED == indexResponse.getResult()) {
+                    cnt += 1;
+                } else {
+                    log.warn("bulk load doc error {}", responseItem.getFailure());
+                }
+            } else {
+                log.warn("bulk load doc error {}", JacksonUtil.writeValueAsString(responseItem));
+            }
+        }
+
         return cnt;
     }
 

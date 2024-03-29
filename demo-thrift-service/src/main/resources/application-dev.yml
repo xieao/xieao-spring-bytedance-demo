@@ -6,3 +6,12 @@ server:
 elasticsearch:
   host: 127.0.0.1
   port: 9200
+
+
+mysql:
+  datasource:
+    connection-init-sql: set names utf8mb4
+    driverClassName: com.mysql.cj.jdbc.Driver
+    enabled: true
+    properties:
+      - dsn: root@tcp(127.0.0.1:3306)/bytedance

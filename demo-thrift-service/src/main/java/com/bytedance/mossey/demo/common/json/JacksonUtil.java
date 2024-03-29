@@ -74,7 +74,7 @@ public class JacksonUtil {
             return JacksonUtil.objectMapper.readValue(content, javaType);
         } catch (IOException e) {
             log.error("", e);
-            throw new JSONSyntaxRuntimeException("readList error ", e);
+            throw new JSONSyntaxRuntimeException("readMap error ", e);
         }
     }
 
